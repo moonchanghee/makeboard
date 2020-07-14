@@ -1,0 +1,76 @@
+#pagenum{
+    position: relative;
+    left: 8%;
+    top: 30%;
+
+}
+#write  {
+    position: absolute;
+    top: 42%;
+    right: 5%;
+}
+
+#in{
+    position: absolute;
+    right: 7%;
+    top: 5%;
+}
+
+#register{
+    position: absolute;
+    right: 3%;
+    top : 5%;
+}
+
+#table{
+    position: absolute;
+    top: 10%;
+}
+
+#aa{
+    position: absolute;
+    top: 42%;
+    left: 45%;
+}
+
+#sch{
+    position: absolute;
+    top: 5%; 
+}
+#btn{
+    position: absolute;
+    top: 5%;
+    left: 12%;  
+}
+
+ 
+#out{
+    position: absolute;
+    right: 3%;
+    top: 5%;
+}
+#username{
+    position: absolute;
+    right: 7%;
+    top: 5%;
+}
+
+#update{
+    position: absolute;
+    right: 6%;
+    bottom: 45%;
+}
+
+#back4{
+    position: absolute;
+    right: 1%;
+    bottom: 45%;
+}
+
+
+#write_tb{
+    padding-right: 1%;
+    position: absolute;
+    top: 10%;
+    margin-top: 10%;
+}

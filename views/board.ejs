@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+  <% if(sess != null){%>
+    <div id="div2">
+      <p id="username"><%=sess.userName%>님</p>
+      <a href ="/logout" id="out">로그아웃 </a>
+    </div>
+    <a href ="/write" id="write" class="btn btn-default pull-right">글쓰기 </a>
+    <%}%>
+
+  <%if(sess === null){%>
+    <a href ="/login" id="in">로그인 </a>
+    <a href ="/register" id="register">회원가입 </a>
+    <%}%>
+
+    <form action="/" method="post"><input type="text" name="search" id="sch" placeholder="작성자 입력">
+      <input type="submit" id = "btn" value="검색"></form>
+ 
+
+    <table  id="table" class=" table table-hover ">
+      <thead>
+      <tr id="tr">
+            <th width ="15%">번호</th>
+            <th width ="50%" >제목(상세보기)</th>
+            <th width ="10%">작성자(아이디)</th>
+            <th width ="7%">작성일</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <%for(var i =0 ; i<row.length && i<5 ; i++){%>
+          <tr id=<%=i%>>
+              <td id="postid"><%=row[i].post_id%></td>
+              <td id="title"><a href="/board/detail?id=<%=row[i].post_id%>"><%=row[i].post_title%></a></td>
+              <td id="memberid"><%=row[i].member_name%>(<%=row[i].member_id%>)</a></td>
+              <td id="postdate"><%=row[i].post_date%></td>
+          </tr>
+          <%}%>
+          
+
+        </tbody>
+    </table>
+    <hr>
+    <%var j = 1%>
+    <%var arr = []%>
+    <div class="text-center" id="aa">
+        <%for(var i =0 ; i<row.length; i++){%>
+          <%if(i%5 ==0 ){%>
+        <button class="pagebtn" value="<%=j%>"><%=j%></button> 
+         <%j++%>
+        <%}%>     
+        <%}%>
+      </div>
+
+      <script>
+        $('.pagebtn').click(function(){
+          var num = $(this).val()
+          $.ajax({
+            url:'/page',
+            dataType:'json',
+            type:'get',
+            data:{data:num},
+            success:function(result){
+              if(result){
+                if(result.length <5){
+                for(var i=5; i>=result.length;i-- ){
+              $('#'+i+'').hide();
+                }
+                }
+                if(result.length === 5){
+                for(var i=0; i<result.length;i++ ){
+              $('#'+i+'').show()
+                }
+                }
+                for(var i=0; i<result.length;i++){ 
+                  $('#'+i+'').html('<td>'+result[i].post_id+'</td>'
+                  +'<td><a href="/board/detail?id='+result[i].post_id+'"> '+result[i].post_title+' </a></td>'
+                  + '<td>'+result[i].member_name+'('+result[i].member_id+')' +'</td>' 
+                  +'<td>'+result[i].post_date +'</td>' )
+                }
+       
+            
+            }
+            }
+        })
+      })
+
+
+
+      </script>
+</body>
+</html>

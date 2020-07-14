@@ -1,0 +1,32 @@
+#div1 {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#back{
+    position: absolute;
+    left: 20%;
+    bottom: 0.1%;
+}
+
+#submit{
+    position: absolute;
+    bottom: 41%;
+    right: 20%;
+}
+
+#back1{
+    position: absolute;
+    bottom: 41%;
+    right: 15%;
+}
+
+
+#back_register{
+    position: absolute;
+    top: 37%;
+    left: 17%;
+}

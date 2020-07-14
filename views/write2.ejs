@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <title>Document</title>
+</head>
+<body>
+    <form action="/write2" method="post">
+        <table border="1" class="table" id="write_tb">
+
+            <tr>
+                <td width="10%">작성자</td>
+                <td class="form-control" width="10%"><%=row[0].member_name%></td>
+                
+            </tr>
+
+            <tr>
+                <td>아이디</td>
+                <td class="form-control"><%=row[0].member_id%></td>
+            </tr>
+    
+            <tr>
+                <td>제목</td>
+                <td class="form-control"><%=row[0].post_title%></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td class="form-control" name="content" id="content" cols="30" rows="10" required><%=row[0].post_content%></td>
+            </tr>
+        </table>
+    </form>
+
+
+
+      
+    <%if(sess.userId === row[0].member_id){%>
+        <button type="submit"   class="btn btn-success" id="up" onclick="location.href= '/write/update?id=<%=row[0].post_id%>'">수정</button>
+        <button type="submit"   class="btn btn-success" id="del" onclick="location.href= '/write/delete?id=<%=row[0].post_id%>'">삭제</button>
+    <%}%>
+    <button type="submit"  class="btn btn-success" id="back4">나가기</button>
+    
+    <br>
+    <!-- <p>댓글</p> -->
+    
+    <!-- <form >
+        <fieldset >
+          <div class="row">
+            <div class="col-8">
+              <textarea name="text" rows="2" class="form-control" ></textarea>
+            </div>
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary h-100 mr-2">Add Comment</button>
+            </div>
+          </div>
+            <span class="invalid-feedback d-block"></span>
+        </fieldset>
+      </form> -->
+    <script>
+        $('#back4').click(function(){
+            history.back();
+        });
+
+
+    </script>   
+</body>
+</html>
